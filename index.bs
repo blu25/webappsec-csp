@@ -3506,7 +3506,13 @@ this algorithm returns normally if compilation is allowed, and throws a
 
   5.  If |context| is a {{Document}}:
 
-      1.  Set |context|'s <a>forced sandboxing flag set</a> to |sandboxing flag set|.
+      1.  If {{Document}}'s <a>forced sandboxing flag set</a> is empty, |sandboxing flag set| is not empty, and |sandboxing flag set| does not contain the <a>sandboxed top-level navigation without user activation browsing context flag</a>, perform the following:
+
+          1.  Add <a>sandboxed top-level navigation without user activation browsing context flag</a> to |sandboxing flag set|.
+
+          1.  Remove <a>sandboxed top-level navigation with user activation browsing context flag</a> from |sandboxing flag set|, if the set contains the flag.
+
+      2.  Set |context|'s <a>forced sandboxing flag set</a> to |sandboxing flag set|.
 
   6.  Return "`Allowed`".
 
